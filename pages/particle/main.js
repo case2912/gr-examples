@@ -1,3 +1,4 @@
+gr.debug = false;
 var GeometryFactory = gr.lib.fundamental.Geometry.GeometryFactory;
 var Geometry = gr.lib.fundamental.Geometry.Geometry;
 GeometryFactory.addType("quad2",{},(gl)=>{

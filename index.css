@@ -1,27 +1,35 @@
 body, html {
-    height: 100%;
-    width: 100%;
-    margin: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }
 
 body {
-    background-color: #ffd;
+  background-color: #ffd;
 }
 
-ul {
-    list-style-type: none;
+.pagelist {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
 }
 
-a {
-    background-color: #336699;
-    color: #fff;
-    display: block;
-    width: 150px;
-    padding: 5px 10px;
-    text-decoration: none;
-    text-align: center;
+.item {
+  width: 25%;
+  text-align: center;
+  margin: 10px;
+  background: lavender;
+  border-radius: 10px;
+  padding: 10px;
+  height: 350px;
 }
 
-a:hover {
-    background-color: #113366;
+.header-container {
+  margin: 10px;
+}
+
+.head-p {
+  margin: 0px;
+  margin-left: 15px;
 }

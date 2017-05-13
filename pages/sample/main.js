@@ -1,5 +1,6 @@
+gr.debug = false;
 gr(function() {
-  var mesh = gr("#sample1")("mesh");
+  var mesh = gr("#main")("mesh");
   mesh.on("mouseenter", () => {
     mesh.setAttribute("scale", 2);
   });

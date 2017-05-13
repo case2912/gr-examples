@@ -1,4 +1,4 @@
-<goml width="400" height="300">
+<goml width="fit" height="fit">
   <import-animation src="./color-animation.json" typeName="anim"></import-animation>
   <scene>
     <camera rotation="x(-20)" position="0,5,20">

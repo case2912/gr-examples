@@ -1,4 +1,4 @@
-<goml width="400" height="300">
+<goml>
   <scene>
     <camera>
       <camera.components>

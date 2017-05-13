@@ -1,5 +1,14 @@
 {
     "pages": [
-        "a"
-    ]
+        "360-image",
+        "animation",
+        "particle",
+        "sample",
+        "shine-a-torch"
+    ],
+    "360-image": "",
+    "animation": "",
+    "particle": "",
+    "sample": "",
+    "shine-a-torch": ""
 }

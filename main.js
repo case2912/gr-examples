@@ -2,15 +2,7 @@ $(() => {
   $.getJSON("./pagelist.json", (data) => {
     for (var i = 0; i < data.pages.length; i++) {
       $(".pagelist").append(
-        '<li><a href=' +
-        location.href +
-        'pages/' +
-        data.pages[i] +
-        '>' +
-        data.pages[i] +
-        '</a><img src=resource/' +
-        data.pages[i] +
-        '.png></img></li>'
+        '<div class=item><a href=pages/' + data.pages[i] + '><img src=resource/' + data.pages[i] + '.png width=200 height=150/><a><p><b>' + data.pages[i] + '</b></p><p>' + data[data.pages[i]] + '</p></div>'
       );
     }
   });
