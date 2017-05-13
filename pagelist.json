@@ -3,12 +3,18 @@
         "360-image",
         "animation",
         "particle",
+        "physics",
         "sample",
+        "shader-art",
+        "shader-art2",
         "shine-a-torch"
     ],
     "360-image": "A 360 degree image is displayed.",
     "animation": "",
     "particle": "",
     "sample": "",
-    "shine-a-torch": ""
+    "shine-a-torch": "",
+    "physics": "",
+    "shader-art": "",
+    "shader-art2": ""
 }

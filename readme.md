@@ -19,11 +19,29 @@ A 360 degree image is displayed.
 
 ![particle](resource/particle.png)
 
+## physics
+
+
+
+![physics](resource/physics.png)
+
 ## sample
 
 
 
 ![sample](resource/sample.png)
+
+## shader-art
+
+
+
+![shader-art](resource/shader-art.png)
+
+## shader-art2
+
+
+
+![shader-art2](resource/shader-art2.png)
 
 ## shine-a-torch
 
