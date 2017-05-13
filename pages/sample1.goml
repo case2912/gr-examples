@@ -1,0 +1,10 @@
+<goml width="400" height="300">
+  <scene>
+    <camera>
+      <camera.components>
+        <MouseCameraControl></MouseCameraControl>
+      </camera.components>
+    </camera>
+    <mesh texture="logo.png" geometry="cube"></mesh>
+  </scene>
+</goml>

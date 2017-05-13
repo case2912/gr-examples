@@ -1,0 +1,12 @@
+<goml width="fit" height="fit">
+  <import-material typeName="colorTest" src="./index.sort" />
+  <geometry type="quad2" name="quad2" />
+  <scene>
+    <camera far="2000">
+      <camera.components>
+        <MouseCameraControl/>
+      </camera.components>
+    </camera>
+    <mesh material="new(colorTest)" geometry="quad2" color="red" scale="0.1" />
+  </scene>
+</goml>
