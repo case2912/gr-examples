@@ -9,27 +9,27 @@ body {
 }
 
 .pagelist {
-  height: 100%;
-  width: 100%;
   margin: 0;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .item {
-  width: 25%;
+  width: 250px;
   text-align: center;
   margin: 10px;
   background: lavender;
   border-radius: 3px;
-  padding: 10px;
-  height: 350px;
+  padding-top: 10px;
+  height: 270px;
 }
 
-.header-container {
-  margin: 10px;
+.header {
+  width: 70%;
+  margin: auto;
 }
 
-.head-p {
+p {
   margin: 0px;
-  margin-left: 15px;
 }
