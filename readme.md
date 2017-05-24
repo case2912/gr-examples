@@ -31,6 +31,12 @@ A 360 degree image is displayed.
 
 ![earth](resource/earth.png)
 
+## geometry-points
+
+
+
+![geometry-points](resource/geometry-points.png)
+
 ## normal-map
 
 
@@ -103,14 +109,14 @@ A 360 degree image is displayed.
 
 ![texture](resource/texture.png)
 
-## video-texture
-
-
-
-![video-texture](resource/video-texture.png)
-
 ## wave
 
 
 
 ![wave](resource/wave.png)
+
+## web-camera
+
+
+
+![web-camera](resource/web-camera.png)

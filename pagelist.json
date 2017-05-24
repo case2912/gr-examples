@@ -5,6 +5,7 @@
         "clover",
         "cube",
         "earth",
+        "geometry-points",
         "normal-map",
         "particle",
         "physics",
@@ -17,8 +18,8 @@
         "sort",
         "syncHTML",
         "texture",
-        "video-texture",
-        "wave"
+        "wave",
+        "web-camera"
     ],
     "360-image": "A 360 degree image is displayed.",
     "animation": "",
@@ -49,5 +50,7 @@
     "texture": "",
     "video-texture": "",
     "wave": "",
-    "normal-map": ""
+    "normal-map": "",
+    "web-camera": "",
+    "geometry-points": ""
 }
