@@ -3,23 +3,27 @@
   "version": "1.0.0",
   "description": "A collection of instructive examples that introduce the various features in Grimoire.js",
   "devDependencies": {
+    "chromedriver": "^2.29.0",
     "nightwatch": "^0.9.15",
-    "json2md": "^1.5.8",
+    "selenium-server-standalone-jar": "^3.4.0",
     "webdriver-manager": "^12.0.6"
   },
   "scripts": {
-    "prestart": "node pagelist.js",
-    "start": "hs -p 3000"
+    "prestart": "node genarate-config.js",
+    "start": "hs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/case2912/gr-examples.git"
   },
-  "keywords": ["grimoire", "grimoirejs", "webGL"],
+  "keywords": [
+    "grimoire",
+    "grimoirejs",
+    "WebGL"
+  ],
   "author": "case2912",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/case2912/gr-examples/issues"
-  },
-  "homepage": "https://github.com/case2912/gr-examples#readme"
+  }
 }

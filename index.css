@@ -5,7 +5,18 @@ body, html {
 }
 
 body {
-  background-color: gray;
+  background-color: black;
+}
+
+body p, a {
+  text-align: center;
+  color: white;
+  font-family: 'Meiryo UI';
+}
+
+body a {
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .pagelist {
@@ -16,20 +27,32 @@ body {
 }
 
 .item {
-  width: 250px;
+  width: 192px;
   text-align: center;
-  margin: 10px;
-  background: lavender;
-  border-radius: 3px;
-  padding-top: 10px;
-  height: 270px;
+  margin: 3px;
+  background: AliceBlue;
+  height: 144px;
+  opacity: 0.6;
+  transition: transform 0.1s linear;
 }
 
-.header {
-  width: 70%;
-  margin: auto;
+img {
+  width: 192px;
+  height: 144px;
 }
 
-p {
-  margin: 0px;
+.item:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.item h5 {
+  position: absolute;
+  margin: 0;
+  color: white;
+  font-family: 'Meiryo UI';
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  margin-left: 5px;
 }

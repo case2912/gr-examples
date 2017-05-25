@@ -13,7 +13,7 @@ gr(function() {
   }, 1000);
 });
 gr.register(() => {
-  gr.registerComponent("OimoScene", {
+  gr.registerComponent("PhysicsScene", {
     $awake: function() {
       this.world = new OIMO.World();
     },
@@ -21,7 +21,7 @@ gr.register(() => {
       this.world.step();
     }
   });
-  gr.overrideDeclaration("scene", ["OimoScene"]);
+  gr.overrideDeclaration("scene", ["PhysicsScene"]);
   gr.registerComponent("Rigid", {
     attributes: {
       shape: {
@@ -36,15 +36,12 @@ gr.register(() => {
     $mount: function() {
       this.__bindAttributes();
       this.transform = this.node.getComponent("Transform");
-      const p = this.transform.localPosition;
-      const r = this.transform.localRotation;
-      const s = this.transform.localScale;
-      const oimoScene = this.node.getComponentInAncestor("OimoScene");
+      const oimoScene = this.node.getComponentInAncestor("PhysicsScene");
       this.body = oimoScene.world.add({
         type: this.shape,
-        size: [s.X, s.Y, s.Z],
-        pos: [p.X, p.Y, p.Z],
-        rot: [r.X, r.Y, r.Z],
+        size: [this.transform.scale.X, this.transform.scale.Y, this.transform.scale.Z],
+        pos: [this.transform.position.X, this.transform.position.Y, this.transform.position.Z],
+        rot: [this.transform.rotation.X, this.transform.rotation.Y, this.transform.rotation.Z],
         move: this.move,
         density: 1
       });
