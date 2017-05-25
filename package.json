@@ -9,8 +9,9 @@
     "webdriver-manager": "^12.0.6"
   },
   "scripts": {
-    "prestart": "node genarate-config.js",
-    "start": "hs"
+    "prestart": "node pagelist.js",
+    "start": "hs",
+    "img":"node nightwatch.js"
   },
   "repository": {
     "type": "git",

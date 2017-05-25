@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   req.open("get", "config.json", true);
   req.send(null);
   req.onload = function() {
-    const images = JSON.parse(req.responseText).pages.map(v => 'image/' + v + '.png');
-    const movies = [];//JSON.parse(req.responseText).movies.map(v => 'movies/' + v);
+    const images = JSON.parse(req.responseText).pages.map(v => 'images/' + v + '.png');
+    const movies = []; //JSON.parse(req.responseText).movies.map(v => 'movies/' + v);
     const pages = images.concat(movies);
     // for (var i = pages.length - 1; i > 0; i--) {
     //   var r = Math.floor(Math.random() * (i + 1));

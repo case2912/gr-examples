@@ -1,12 +1,13 @@
 'use strict';
-
+const fs = require('fs');
+const pages = JSON.parse(fs.readFileSync('config.json')).pages;
 module.exports = {
-
-  'Contents test': function(browser) {
-    browser
-      .url('http://localhost:9100/')
-      .pause(10000)
-      .assert.title('gr-examples')
-      .end();
+  'saveScreenshot': function(browser) {
+    for (var i = 0; i < pages.length; i++) {
+      browser
+        .url('localhost:8080/pages/' + pages[i])
+        .saveScreenshot('images/' + pages[i] + '.png')
+    }
+    browser.end();
   }
 };
