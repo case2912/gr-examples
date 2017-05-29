@@ -17,7 +17,10 @@
       "selenium_host": "localhost",
       "silent": true,
       "desiredCapabilities": {
-        "browserName": "chrome"
+        "browserName": "chrome",
+        "chromeOptions": {
+          "args": ["start-fullscreen","disable-infobars"]
+        }
       }
     }
   }

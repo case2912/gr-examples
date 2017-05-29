@@ -5,7 +5,7 @@ module.exports = {
   'saveScreenshot': function(browser) {
     for (var i = 0; i < pages.length; i++) {
       browser
-        .url('localhost:8080/pages/' + pages[i])
+        .url('http://localhost:8080/pages/' + pages[i])
         .saveScreenshot('images/' + pages[i] + '.png')
     }
     browser.end();

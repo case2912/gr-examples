@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
     div.appendChild(a);
     for (var i = 0; i < pages.length; i++) {
       const item = div.cloneNode(true);
-      item.firstElementChild.innerHTML = '';
-      item.lastElementChild.href = '';
+      item.firstElementChild.innerHTML = JSON.parse(req.responseText).pages[i];
+      item.lastElementChild.href = 'pages/' + JSON.parse(req.responseText).pages[i];
       item.lastElementChild.firstElementChild.src = pages[i];
       parent.appendChild(item);
     }
