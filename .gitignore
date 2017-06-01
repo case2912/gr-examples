@@ -67,4 +67,5 @@ config.json
 test/*.xml
 images
 movies
+pages/effekseer/
 
