@@ -1,0 +1,21 @@
+{
+    "jump": [{
+        "query": "@",
+        "component": "Transform",
+        "attribute": "position",
+        "timelines": [{
+                "times": [0, 3000],
+                "values": [0, 0]
+            },
+            {
+                "times": [0, 1500, 3000],
+                "values": [0, 10, 0]
+            },
+            {
+                "times": [0, 3000],
+                "values": [0, 0]
+            }
+        ]
+    }]
+
+}

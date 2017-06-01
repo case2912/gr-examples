@@ -1,0 +1,15 @@
+<goml>
+  <import-animation src="./test-animation.json" typeName="testanim"></import-animation>
+  <import-animation src="./test-animation2.json" typeName="animation2"></import-animation>
+  <scene>
+    <camera>
+      <camera.components>
+        <MouseCameraControl></MouseCameraControl>
+      </camera.components>
+    </camera>
+    <mesh color="green" material="new(unlit)" geometry="cube">
+    </mesh>
+    <mesh id="mmesh" material="new(unlit)" geometry="cube">
+    </mesh>
+  </scene>
+</goml>
