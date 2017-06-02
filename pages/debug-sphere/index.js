@@ -13,7 +13,7 @@ GeometryFactory.addType("points", {}, gl => {
       positions[3 * (n * i + j) + 1] = Math.cos(Math.PI * i / (n - 1))
       positions[3 * (n * i + j) + 2] = Math.sin(Math.PI * i / (n - 1)) * Math.sin(PI_2 * j / (n - 1))
       texCoord[2 * (n * i + j) + 0] = j / (n - 1)
-      texCoord[2 * (n * i + j) + 1] = i / (n - 1)
+      texCoord[2 * (n * i + j) + 1] = Math.sin(Math.PI / 2 * i / (n - 1))
     }
   }
   geometry.addAttributes(positions, {
@@ -43,6 +43,8 @@ GeometryFactory.addType("points", {}, gl => {
     }
   }
   geometry.addIndex("default", indices, WebGLRenderingContext.TRIANGLES)
-  geometry.addIndex("points", Array.from({length:n*n},(v,k)=>k), WebGLRenderingContext.POINTS)
+  geometry.addIndex("points", Array.from({
+    length: n * n
+  }, (v, k) => k), WebGLRenderingContext.POINTS)
   return geometry
 })
