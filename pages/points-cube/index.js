@@ -1,6 +1,6 @@
 const GeometryFactory = gr.lib.fundamental.Geometry.GeometryFactory
 const Geometry = gr.lib.fundamental.Geometry.Geometry
-const n = 4
+const n = 40
 
 GeometryFactory.addType("points", {}, gl => {
   const geometry = new Geometry(gl)
@@ -17,45 +17,43 @@ GeometryFactory.addType("points", {}, gl => {
   }
   //back
   fi = positions.length
-  console.log(positions.length / 3);
   for (var i = 1; i < n - 1; i++) {
     for (var j = 0; j < n - 1; j++) {
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 0] = -0.5 + j / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 2] = -0.5
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 0] = -0.5 + j / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 2] = -0.5
+    }
+  }
+
+  //left
+  fi = positions.length
+  for (var i = 1; i < n - 1; i++) {
+    for (var j = 0; j < n - 1; j++) {
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 0] = -0.5
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 2] = -0.5 + (j + 1) / (n - 1)
     }
   }
   //front
   fi = positions.length
   for (var i = 1; i < n - 1; i++) {
     for (var j = 0; j < n - 1; j++) {
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 0] = -0.5 + j / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 2] = 0.5
-    }
-  }
-  //left
-  fi = positions.length
-  for (var i = 1; i < n - 1; i++) {
-    for (var j = 0; j < n - 1; j++) {
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 0] = -0.5
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 2] = -0.5 + j / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 0] = -0.5 + (j + 1) / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 2] = 0.5
     }
   }
   //right
   fi = positions.length
   for (var i = 1; i < n - 1; i++) {
     for (var j = 0; j < n - 1; j++) {
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 0] = 0.5
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
-      positions[fi + 3 * ((n - 2) * (i - 1) + j) + 2] = -0.5 + j / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 0] = 0.5
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 1] = 0.5 - i / (n - 1)
+      positions[fi + 3 * ((n - 1) * (i - 1) + j) + 2] = -0.5 + j / (n - 1)
     }
   }
-
   //bottom
   fi = positions.length
-
   for (var i = 0; i < n; i++) {
     for (var j = 0; j < n; j++) {
       positions[fi + 3 * (n * i + j) + 0] = -0.5 + j / (n - 1)
@@ -63,8 +61,14 @@ GeometryFactory.addType("points", {}, gl => {
       positions[fi + 3 * (n * i + j) + 2] = 0.5 - i / (n - 1)
     }
   }
+  console.log(positions.length / 3, n * n * n - (n - 2) * (n - 2) * (n - 2));
   geometry.addAttributes(positions, {
     POSITION: {
+      size: 3
+    }
+  })
+  geometry.addAttributes(positions, {
+    NORMAL: {
       size: 3
     }
   })
@@ -80,9 +84,8 @@ GeometryFactory.addType("points", {}, gl => {
       indices[6 * ((n - 1) * i + j) + 5] = n * i + j + 1
     }
   }
-  console.log(positions.length / 3, n * n * n - (n - 2) * (n - 2) * (n - 2))
   geometry.addIndex("points", Array.from({
-    length: n * n
+    length: n * n * n - (n - 2) * (n - 2) * (n - 2)
   }, (v, k) => k), WebGLRenderingContext.POINTS)
   geometry.addIndex("default", indices, WebGLRenderingContext.TRIANGLES)
   return geometry
