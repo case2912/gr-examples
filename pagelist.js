@@ -3,9 +3,5 @@ const data = {};
 fs.readdir('./pages', (err, files) => {
   if (files[0] == '.DS_Store') files.splice(0, 1);
   data.pages = files;
-});
-fs.readdir('./movies', (err, files) => {
-  if (files[0] == '.DS_Store') files.splice(0, 1);
-  data.movies = files;
   fs.writeFileSync('./config.json', JSON.stringify(data, null, '    '));
 });
