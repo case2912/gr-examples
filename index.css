@@ -6,6 +6,7 @@ body, html {
 
 body {
   background-color: black;
+  margin-top: 10px;
 }
 
 body p, a {
@@ -38,7 +39,8 @@ body a {
 
 img {
   width: 192px;
-  height: 144px;
+  height: 116px;
+  margin-top: 28px;
 }
 
 .item:hover {
@@ -50,7 +52,8 @@ img {
 .item h5 {
   position: absolute;
   margin: 0;
-  color: white;
+  margin-top: 2px;
+  color: LavenderBlush;
   font-family: 'Meiryo UI';
   font-weight: bold;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);

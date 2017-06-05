@@ -12,9 +12,11 @@
         "geometry-points",
         "geometry-video",
         "geometry-video2",
-        "geometry-videoTexture",
+        "geometry-video3",
         "geometry-wave",
         "geometry-wave2",
+        "hand-skybox",
+        "hand-spinner",
         "light",
         "multipass-rendering",
         "normal-map",
@@ -38,7 +40,6 @@
         "texture-sphere",
         "vertex-sphere",
         "video-texture",
-        "wave",
         "web-camera"
     ]
 }
