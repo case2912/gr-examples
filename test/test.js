@@ -6,7 +6,6 @@ module.exports = {
     for (var i = 0; i < pages.length; i++) {
       browser
         .url('http://localhost:8080/pages/' + pages[i])
-        .pause(1000)
         .saveScreenshot('images/' + pages[i] + '.png')
     }
     browser.end();
