@@ -7,7 +7,7 @@ GeometryFactory.addType("points", {}, gl => {
   const positions = []
   for (var i = 0; i < n; i++) {
     positions[3 * i + 0] = i
-    positions[3 * i + 1] = 0.1*i*i
+    positions[3 * i + 1] = 0.1*i*i + 3*Math.sin(i)
     positions[3 * i + 2] = 0
   }
   geometry.addAttributes(positions, {
@@ -43,4 +43,14 @@ GeometryFactory.addType("axis", {}, gl => {
   }, (v, k) => k);
   geometry.addIndex("default", indices, WebGLRenderingContext.LINES)
   return geometry
+})
+
+gr(() => {
+  let phi = 0
+  const rotate = () => {
+    gr("#main")("#base").setAttribute("rotation", 0+','+phi+','+0);
+    phi+=1
+    requestAnimationFrame(rotate);
+  }
+  rotate()
 })

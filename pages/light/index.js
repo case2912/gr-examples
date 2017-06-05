@@ -2,8 +2,8 @@ gr.debug = false;
 gr(() => {
   const canvas = document.getElementsByClassName('gr-container')[0].childNodes[0];
   const mouse = {
-    x: 0.,
-    y: 0.
+    x: 0.5,
+    y: 0.5
   }
   const onMouseMove = (e) => {
     mouse.x = e.viewportNormalizedX * canvas.width / Math.min(canvas.width, canvas.height);

@@ -6,6 +6,6 @@
         <MouseCameraControl/>
       </camera.components>
     </camera>
-    <mesh geometry="sphere" material="new(custom)" color="orange" />
+    <mesh geometry="sphere" scale="3" material="new(custom)" color="orange" />
   </scene>
 </goml>

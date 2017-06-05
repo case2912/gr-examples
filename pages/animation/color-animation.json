@@ -5,15 +5,15 @@
     "attribute": "scale",
     "timelines": [{
         "times": [0, 1000, 2000],
-        "values": [1, 4, 1]
+        "values": [1, 6, 1]
       },
       {
         "times": [0, 1000, 2000],
-        "values": [1, 4, 1]
+        "values": [1, 6, 1]
       },
       {
         "times": [0, 1000, 2000],
-        "values": [1, 4, 1]
+        "values": [1, 6, 1]
       }
     ]
   }]

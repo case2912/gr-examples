@@ -111,3 +111,13 @@ navigator.getUserMedia({
     requestAnimationFrame(wave)
   }
 })()
+
+gr(() => {
+  let phi = 0
+  const rotate = () => {
+    gr("#main")("mesh").setAttribute("rotation", 180+','+phi+','+0);
+    phi+=1
+    requestAnimationFrame(rotate);
+  }
+  rotate()
+})

@@ -48,3 +48,12 @@ GeometryFactory.addType("points", {}, gl => {
   }, (v, k) => k), WebGLRenderingContext.POINTS)
   return geometry
 })
+gr(() => {
+  let phi = 0
+  const rotate = () => {
+    gr("#main")("object").setAttribute("rotation", 0+','+phi+','+0);
+    phi+=1
+    requestAnimationFrame(rotate);
+  }
+  rotate()
+})

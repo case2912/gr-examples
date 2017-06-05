@@ -2,7 +2,7 @@
   <import-material typeName="mat" src="index.sort" />
   <geometry type="points" name="points" />
   <scene>
-    <camera far="1000">
+    <camera far="1000" position="0,0,150">
       <camera.components>
         <MouseCameraControl/>
       </camera.components>

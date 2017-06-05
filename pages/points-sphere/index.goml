@@ -7,7 +7,9 @@
         <MouseCameraControl/>
       </camera.components>
     </camera>
-    <mesh geometry="points" material="new(unlit)" texture="texture.png"></mesh>
-    <mesh geometry="points" material="new(mat)" targetBuffer="points" color="blue" scale="1.001" id="points"></mesh>
+    <object scale="3">
+      <mesh geometry="points" material="new(unlit)" texture="texture.png"></mesh>
+      <mesh geometry="points" material="new(mat)" targetBuffer="points" color="blue" scale="1.001" id="points"></mesh>
+    </object>
   </scene>
 </goml>

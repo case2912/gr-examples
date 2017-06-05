@@ -92,7 +92,7 @@ navigator.getUserMedia({
       for (var i = 0; i < n; i++) {
         positions[3 * (i + n * j) + 0] = i - n / 2
         positions[3 * (i + n * j) + 1] = j - n / 2
-        positions[3 * (i + n * j) + 2] = 10 * Math.sin(i / 10 + Math.PI * t / 1000) * Math.cos(j / 10 + Math.PI * t / 1000)
+        positions[3 * (i + n * j) + 2] = 10*Math.cos(j / 10 + Math.PI * t / 1000)
       }
     }
     pBuffer.update(new Float32Array(positions))

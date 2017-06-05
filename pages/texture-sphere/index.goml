@@ -8,7 +8,7 @@
       </camera.components>
     </camera>
     <light intensity="10" rotation="-30,-30,0"/>
-    <object scale="1">
+    <object scale="3">
       <mesh geometry="points" texture="texture.png" id="base"></mesh>
       <mesh geometry="sphere" texture="line.png" id="points"  scale="1.003" ></mesh>
     </object>

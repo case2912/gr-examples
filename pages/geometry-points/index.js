@@ -27,3 +27,12 @@
     return geometry
   });
 })()
+gr(() => {
+  let phi = 0
+  const rotate = () => {
+    gr("#main")("mesh").setAttribute("rotation", phi+','+phi+','+phi);
+    phi+=1
+    requestAnimationFrame(rotate);
+  }
+  rotate()
+})

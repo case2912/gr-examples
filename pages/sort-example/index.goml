@@ -7,7 +7,7 @@
         <MouseCameraControl/>
       </camera.components>
     </camera>
-    <mesh geometry="points" material="new(mat)" texture="cell.png"></mesh>
-    <mesh geometry="sphere" material="new(unlit)" texture="cell.png" scale="0.9" id="base"></mesh>
+    <mesh geometry="points" material="new(mat)" texture="cell.png" scale="2"></mesh>
+    <mesh geometry="sphere" material="new(unlit)" texture="cell.png" scale="1.9" id="base"></mesh>
   </scene>
 </goml>

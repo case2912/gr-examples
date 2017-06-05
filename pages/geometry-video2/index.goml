@@ -1,4 +1,4 @@
-<goml width="400" height="400">
+<goml>
   <import-material typeName="mat" src="index.sort" />
   <geometry type="points" name="points" />
   <scene>

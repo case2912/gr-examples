@@ -8,9 +8,11 @@
         <MouseCameraControl/>
       </camera.components>
     </camera>
-    <object position="-50,-50,0">
-      <mesh geometry="points" material="new(mat)"></mesh>
-      <mesh geometry="axis" material="new(mat)" color="black"></mesh>
+    <object id="base">
+      <object position="-50,-50,0">
+        <mesh geometry="points" material="new(mat)"></mesh>
+        <mesh geometry="axis" material="new(mat)" color="black"></mesh>
+      </object>
     </object>
   </scene>
 </goml>

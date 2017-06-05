@@ -3,22 +3,20 @@
 
 <head>
   <title>animation</title>
-  <link rel="icon" type="image/png" href="../../favicon.png">
-  
   <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
   <script src="https://unpkg.com/grimoirejs-animation/register/grimoire-animation.js"></script>
   <script src="https://unpkg.com/grimoirejs-forward-shading/register/grimoire-forward-shading.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-  <script src="./main.js"></script>
-  <script src="../../saveimg.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./index.js"></script>
 
 </head>
 
 <body>
-  <div>
-    <input id="input" type="range" min="0" max="1" value="0" step="0.1">
-    <script id="main" src="index.goml" type="text/goml"></script>
+  <div style="position:absolute;z-index:10;">
+    <input id="input" type="range" min="0" max="1" value="1" step="0.1">
   </div>
+  <script id="main" src="index.goml" type="text/goml"></script>
+
 </body>
 
 </html>

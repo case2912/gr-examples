@@ -61,7 +61,6 @@ GeometryFactory.addType("points", {}, gl => {
       positions[fi + 3 * (n * i + j) + 2] = 0.5 - i / (n - 1)
     }
   }
-  console.log(positions.length / 3, n * n * n - (n - 2) * (n - 2) * (n - 2));
   geometry.addAttributes(positions, {
     POSITION: {
       size: 3
@@ -89,4 +88,13 @@ GeometryFactory.addType("points", {}, gl => {
   }, (v, k) => k), WebGLRenderingContext.POINTS)
   geometry.addIndex("default", indices, WebGLRenderingContext.TRIANGLES)
   return geometry
+})
+gr(() => {
+  let phi = 0
+  const rotate = () => {
+    gr("#main")("mesh").setAttribute("rotation", phi+','+phi+','+phi);
+    phi+=1
+    requestAnimationFrame(rotate);
+  }
+  rotate()
 })
