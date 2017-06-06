@@ -539,6 +539,10 @@ iconv-lite@^0.4.5:
   version "0.4.17"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.17.tgz#4fdaa3b38acbc2c031b045d0edcdfe1ecab18c8d"
 
+indento@^1.1.7:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/indento/-/indento-1.1.9.tgz#7072eee69feb96095f508acb699cf850500519e8"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -628,6 +632,12 @@ json-schema@0.2.3:
 json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
+
+json2md@^1.5.8:
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/json2md/-/json2md-1.5.8.tgz#9d5dd25c4687119831bcfe84dd34c8cba9e47cfd"
+  dependencies:
+    indento "^1.1.7"
 
 json3@3.3.2:
   version "3.3.2"

@@ -4,12 +4,13 @@
   "description": "A collection of instructive examples that introduce the various features in Grimoire.js",
   "devDependencies": {
     "chromedriver": "^2.29.0",
+    "json2md": "^1.5.8",
     "nightwatch": "^0.9.15",
     "selenium-server-standalone-jar": "^3.4.0",
     "webdriver-manager": "^12.0.6"
   },
   "scripts": {
-    "preupdate":"node pagelist.js",
+    "preupdate": "node pagelist.js",
     "update": "node nightwatch.js",
     "postupdate": "sh convert.sh",
     "start": "hs"
