@@ -30,13 +30,13 @@
 
     void main(){
       uv = vec2(position.x /2.0 +0.5, 1. - position.y / 2.0 + 0.5);
-      vColor = hsv2rgb(vec3(cos(_time/1000. + seed * seed),1,1));//*mix(color1,color2,0.5 + sin(_time /1000. + seed) * 0.5);
+      vColor = hsv2rgb(vec3(cos(_time/1000. + seed * seed),1,1));
       gl_Position = _matPVM * vec4(position + posBase + vec3(0,sin(_time/1000. + seed),cos(_time/1000. + seed)),1);
     }
   #endif
 
   #ifdef FS
-  @{default:"_logo.png"}
+  @{default:"burger.png"}
   uniform sampler2D texture;
     void main(){
       vec3 texColor = texture2D(texture,uv).rgb;

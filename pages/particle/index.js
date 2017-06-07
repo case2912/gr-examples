@@ -1,7 +1,7 @@
 gr.debug = false;
 var GeometryFactory = gr.lib.fundamental.Geometry.GeometryFactory;
 var Geometry = gr.lib.fundamental.Geometry.Geometry;
-GeometryFactory.addType("quad2",{},(gl)=>{
+GeometryFactory.addType("points-cloud",{},(gl)=>{
   const geometry = new Geometry(gl);
   geometry.addAttributes([-1,1,0,1,1,0,1,-1,0,-1,-1,0],
   {
@@ -23,9 +23,9 @@ GeometryFactory.addType("quad2",{},(gl)=>{
   const arr = [];
   const arr2 = [];
   for(let i = 0; i < n; i ++){
-    arr.push(Math.random() * 100);
-    arr.push(Math.random() * 100);
-    arr.push(Math.random() * 100);
+    arr.push(Math.random() * 100 - 50);
+    arr.push(Math.random() * 100 - 50);
+    arr.push(Math.random() * 100 - 50);
     arr2.push(Math.random() * 100);
   }
   geometry.addAttributes(arr,{
