@@ -1,5 +1,5 @@
 <goml>
-  <import-animation src="./color-animation.json" typeName="anim"></import-animation>
+  <import-animation src="./translate-animation.json" typeName="anim"></import-animation>
   <scene>
     <camera rotation="x(-20)" position="0,5,20">
     </camera>
