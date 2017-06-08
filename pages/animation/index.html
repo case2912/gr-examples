@@ -2,21 +2,25 @@
 <html lang="en">
 
 <head>
-  <title>animation</title>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../page.css">
+
+  <!-- Grimoire.js plugins -->
   <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
   <script src="https://unpkg.com/grimoirejs-animation/register/grimoire-animation.js"></script>
   <script src="https://unpkg.com/grimoirejs-forward-shading/register/grimoire-forward-shading.js"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <!-- Using javascript interface with Grimoire.js -->
   <script src="./index.js"></script>
 
+  <!-- FPS Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+  <script src="../../config.js"></script>
 </head>
 
 <body>
-  <div style="position:absolute;z-index:10;">
-    <input id="input" type="range" min="0" max="1" value="1" step="0.1">
-  </div>
+  <!-- Grimoire Object Markup Language -->
   <script id="main" src="index.goml" type="text/goml"></script>
-
 </body>
 
 </html>

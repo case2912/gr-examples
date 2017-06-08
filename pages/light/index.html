@@ -2,15 +2,26 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../page.css">
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Grimoire.js plugins -->
   <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
-  <script src="./index.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="./index.css">
-  <title>shine-a-torch</title>
+
+  <!-- Using javascript interface with Grimoire.js -->
+  <script src="./index.js"></script>
+
+  <!-- FPS Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+  <script src="../../config.js"></script>
 </head>
 
 <body>
+  <!-- Grimoire Object Markup Language -->
   <div class="canvas-container">
-    <script id="main" src="./index.goml" type="text/goml" charset="utf-8"></script>
+    <script id="main" src="index.goml" type="text/goml"></script>
   </div>
 </body>
 

@@ -1,33 +1,35 @@
-navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
 let imgArray;
-navigator.getUserMedia({
-    video: true,
-    audio: false
-  },
-  (localMediaStream) => {
-    var url = (window.URL || window.webkitURL);
-    video = document.createElement('video');
-    video.width = 100;
-    video.height = 100;
-    const canvas = document.createElement('canvas');
-    document.body.appendChild(video)
-    document.body.appendChild(canvas)
-    canvas.width = 100;
-    canvas.height = 100;
-    const ctx = canvas.getContext('2d')
-    video.addEventListener("timeupdate", function() {
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      imgArray = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }, true);
-    video.addEventListener('canplay', function() {
-      video.removeEventListener('canplay', arguments.callee, true);
-      video.play();
-    }, true);
-    video.src = url.createObjectURL(localMediaStream);
-  },
-  () => {}
-);
 
+document.addEventListener("DOMContentLoaded", () => {
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
+  navigator.getUserMedia({
+      video: true,
+      audio: false
+    },
+    (localMediaStream) => {
+      var url = (window.URL || window.webkitURL);
+      video = document.createElement('video');
+      video.width = 100;
+      video.height = 100;
+      const canvas = document.createElement('canvas');
+      document.body.appendChild(video)
+      document.body.appendChild(canvas)
+      canvas.width = 100;
+      canvas.height = 100;
+      const ctx = canvas.getContext('2d')
+      video.addEventListener("timeupdate", function() {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        imgArray = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      }, true);
+      video.addEventListener('canplay', function() {
+        video.removeEventListener('canplay', arguments.callee, true);
+        video.play();
+      }, true);
+      video.src = url.createObjectURL(localMediaStream);
+    },
+    () => {}
+  );
+});
 !(() => {
   const n = 100;
   const positions = []
@@ -92,7 +94,7 @@ navigator.getUserMedia({
       for (var i = 0; i < n; i++) {
         positions[3 * (i + n * j) + 0] = i - n / 2
         positions[3 * (i + n * j) + 1] = j - n / 2
-        positions[3 * (i + n * j) + 2] = Math.max(Math.tan(j / 10 + Math.PI * t / 1000),1)
+        positions[3 * (i + n * j) + 2] = Math.max(Math.tan(j / 10 + Math.PI * t / 1000), 1)
       }
     }
     pBuffer.update(new Float32Array(positions))
@@ -103,8 +105,8 @@ navigator.getUserMedia({
 gr(() => {
   let phi = 0
   const rotate = () => {
-    gr("#main")("mesh").setAttribute("rotation", 180+','+phi+','+0);
-    phi+=1
+    gr("#main")("mesh").setAttribute("rotation", 180 + ',' + phi + ',' + 0);
+    phi += 1
     requestAnimationFrame(rotate);
   }
   rotate()

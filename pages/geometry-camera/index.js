@@ -1,33 +1,35 @@
-navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
 let imgArray;
-navigator.getUserMedia({
-    video: true,
-    audio: false
-  },
-  (localMediaStream) => {
-    var url = (window.URL || window.webkitURL);
-    video = document.createElement('video');
-    video.width = 100;
-    video.height = 100;
-    const canvas = document.createElement('canvas');
-    canvas.width = 100;
-    canvas.height = 100;
-    document.body.appendChild(video);
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d')
-    setInterval(() => {
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      imgArray = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      console.log(2)
-    }, 1000);
-    video.addEventListener('canplay', function() {
-      video.removeEventListener('canplay', arguments.callee, true);
-      video.play();
-    }, true);
-    video.src = url.createObjectURL(localMediaStream);
-  },
-  () => {}
-);
+document.addEventListener("DOMContentLoaded", () => {
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
+  navigator.getUserMedia({
+      video: true,
+      audio: false
+    },
+    (localMediaStream) => {
+      var url = (window.URL || window.webkitURL);
+      video = document.createElement('video');
+      video.width = 100;
+      video.height = 100;
+      const canvas = document.createElement('canvas');
+      canvas.width = 100;
+      canvas.height = 100;
+      document.body.appendChild(video);
+      document.body.appendChild(canvas);
+      const ctx = canvas.getContext('2d')
+      setInterval(() => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        imgArray = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        console.log(2)
+      }, 1000);
+      video.addEventListener('canplay', function() {
+        video.removeEventListener('canplay', arguments.callee, true);
+        video.play();
+      }, true);
+      video.src = url.createObjectURL(localMediaStream);
+    },
+    () => {}
+  );
+});
 
 !(() => {
   const n = 100;
@@ -67,14 +69,6 @@ navigator.getUserMedia({
     for (var i = 0; i < n * n; i++) {
       indices[i] = i
     }
-    // let copy = indices.concat()
-    // copy.pop()
-    // copy.shift()
-    // copy = copy.filter(function(element, index, array) {
-    //   return (element % n !== n - 1 && element % n !== 0)
-    // })
-    //horizontal
-    //indices = indices.concat(copy)
     geometry.addIndex("default", indices, WebGLRenderingContext.POINTS, 0)
     pBuffer = geometry.buffers[geometry.accessors["POSITION"].bufferIndex]
     cBuffer = geometry.buffers[geometry.accessors["COLOR"].bufferIndex]
@@ -91,7 +85,7 @@ navigator.getUserMedia({
             colors[4 * (i + n * j) + 3] = imgArray.data[4 * (i + n * j) + 3] / 255;
           }
         }
-      },0)
+      }, 0)
     }, 1200)
 
     wave()
@@ -115,8 +109,8 @@ navigator.getUserMedia({
 gr(() => {
   let phi = 0
   const rotate = () => {
-    gr("#main")("mesh").setAttribute("rotation", 180+','+phi+','+0);
-    phi+=1
+    gr("#main")("mesh").setAttribute("rotation", 180 + ',' + phi + ',' + 0);
+    phi += 1
     requestAnimationFrame(rotate);
   }
   rotate()

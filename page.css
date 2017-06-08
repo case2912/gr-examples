@@ -1,0 +1,19 @@
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body>a {
+  position: absolute;
+  padding: 5px 10px;
+  z-index: 10;
+  background-color: rgba(200, 200, 200, 0.7);
+  margin: 5px;
+  text-decoration: none;
+  color: black;
+  border-radius: 1px;
+  right: 0px;
+  top: 0px;
+  font-weight: bold;
+}
