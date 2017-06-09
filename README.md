@@ -52,6 +52,9 @@
 ## hand-spinner
 ![hand-spinner](./images/hand-spinner.png)
 
+## jenga
+![jenga](./images/jenga.png)
+
 ## light
 ![light](./images/light.png)
 
