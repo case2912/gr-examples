@@ -9,14 +9,12 @@ gr(() => {
       scale: [0.2, 0.2, 0.6],
       position: [x, (Math.floor(i / 3)) * 0.4, z],
       rotation: '0,' + 90 * stage + ',0',
-      albedo:"orange"
+      albedo: "orange"
     });
     node.addComponent("RigidBody");
     node.on("mouseenter", function() {
-      document.addEventListener("click", function() {
-        node.remove();
-      })
-    })
+      node.remove();
+    });
   }
 
 });

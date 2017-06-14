@@ -2,6 +2,7 @@ const Quaternion = gr.lib.math.Quaternion;
 const Vector3 = gr.lib.math.Vector3;
 gr.register(() => {
   gr.registerComponent("OimoScene", {
+    attributes: {},
     $awake: function() {
       this.world = new OIMO.World();
     },
