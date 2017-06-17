@@ -1,7 +1,7 @@
 !(() => {
   const n = 100;
-  const positions = []
-  const colors = []
+  let positions = []
+  let colors = []
 
   const GeometryFactory = gr.lib.fundamental.Geometry.GeometryFactory
   const Geometry = gr.lib.fundamental.Geometry.Geometry
@@ -63,8 +63,8 @@
 gr(() => {
   let phi = 0
   const rotate = () => {
-    gr("#main")("mesh").setAttribute("rotation", 0+','+phi+','+45);
-    phi+=1
+    gr("#main")("mesh").setAttribute("rotation", 0 + ',' + phi + ',' + 45);
+    phi += 1
     requestAnimationFrame(rotate);
   }
   rotate()
