@@ -1,6 +1,6 @@
 const GeometryFactory = gr.lib.fundamental.Geometry.GeometryFactory
 const Geometry = gr.lib.fundamental.Geometry.Geometry
-const n = 100
+const n = 50
 
 GeometryFactory.addType("points", {}, gl => {
   const geometry = new Geometry(gl)
@@ -13,7 +13,7 @@ GeometryFactory.addType("points", {}, gl => {
       positions[3 * (n * i + j) + 1] = Math.cos(Math.PI * i / (n - 1))
       positions[3 * (n * i + j) + 2] = Math.sin(Math.PI * i / (n - 1)) * Math.sin(PI_2 * j / (n - 1))
       texCoord[2 * (n * i + j) + 0] = j / (n - 1)
-      texCoord[2 * (n * i + j) + 1] = Math.sin(Math.PI / 2 * i / (n - 1))
+      texCoord[2 * (n * i + j) + 1] = i / (n - 1)
     }
   }
   geometry.addAttributes(positions, {
@@ -47,13 +47,4 @@ GeometryFactory.addType("points", {}, gl => {
     length: n * n
   }, (v, k) => k), WebGLRenderingContext.POINTS)
   return geometry
-})
-gr(() => {
-  let phi = 0
-  const rotate = () => {
-    gr("#main")("object").setAttribute("rotation", 0+','+phi+','+0);
-    phi+=1
-    requestAnimationFrame(rotate);
-  }
-  rotate()
 })
