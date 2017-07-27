@@ -13,7 +13,7 @@ function isExistFile(file) {
 module.exports = {
   'saveScreenshot': function(browser) {
     for (var i = 0; i < pages.length; i++) {
-      const path = 'images/' + pages[i] + '.png'
+      const path = '_images/' + pages[i] + '.png'
       if (!isExistFile(path)) {
         browser
           .url('http://localhost:8080/pages/' + pages[i])

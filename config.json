@@ -2,6 +2,7 @@
     "pages": [
         "2d-graph",
         "360-image",
+        "5000",
         "animation",
         "clover",
         "debug-sphere",
@@ -24,6 +25,7 @@
         "normal-map",
         "particle",
         "physics",
+        "point-sprite",
         "points-cube",
         "points-sphere",
         "points-wave",

@@ -7,6 +7,9 @@
 ## 360-image
 ![360-image](./images/360-image.png)
 
+## 5000
+![5000](./images/5000.png)
+
 ## animation
 ![animation](./images/animation.png)
 
@@ -72,6 +75,9 @@
 
 ## physics
 ![physics](./images/physics.png)
+
+## point-sprite
+![point-sprite](./images/point-sprite.png)
 
 ## points-cube
 ![points-cube](./images/points-cube.png)
