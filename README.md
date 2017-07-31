@@ -64,6 +64,9 @@
 ## light
 ![light](./images/light.png)
 
+## mu-sprite
+![mu-sprite](./images/mu-sprite.png)
+
 ## multipass-rendering
 ![multipass-rendering](./images/multipass-rendering.png)
 
