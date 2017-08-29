@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <script type="text/goml">
+    <goml>
+      <geometry type="letter" name="letter" letters="this is test.\naaarrr"></geometry>
+      <import-material typeName="mat" src="index.sort"></import-material>
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh material="new(mat)" geometry="letter"></mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>
