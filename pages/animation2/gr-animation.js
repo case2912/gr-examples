@@ -1,1 +1,0 @@
-./../grimoirejs-animation/register/grimoire-animation.js
