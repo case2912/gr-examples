@@ -6,7 +6,7 @@
     <light rotation="x(-30d)" type="directional" />
     <mesh albedo="blue" geometry="cube">
       <mesh.components>
-        <Animation animation="anim" clip="translate"></Animation>
+        <Animation animation="anim" clips="translate"></Animation>
       </mesh.components>
     </mesh>
   </scene>

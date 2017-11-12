@@ -44,7 +44,7 @@
     setInterval(() => {
       wave();
       gr("#main")("mesh").setAttribute('rotation', [0, phi, 0]);
-      phi+=0.1;
+      phi += 0.01;
     }, 100)
   })
   const wave = () => {

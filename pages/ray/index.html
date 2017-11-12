@@ -2,6 +2,12 @@
 <html>
 
 <head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../page.css">
+  <!-- FPS Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+  <script src="../../config.js"></script>
   <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
 </head>
 
@@ -15,7 +21,7 @@
           default: "texture"
         }
       },
-      $update: function() {
+      $update: function () {
         const camera = this.node.parent.getChildrenByNodeName("camera")[0];
         this.node.setAttribute("rotation", camera.getComponent("Transform").rotation);
         const r = camera.getComponent("Transform").rotation;

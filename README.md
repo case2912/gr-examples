@@ -13,9 +13,6 @@
 ## animation
 ![animation](./images/animation.png)
 
-## animation2
-![animation2](./images/animation2.png)
-
 ## audio
 ![audio](./images/audio.png)
 
@@ -48,9 +45,6 @@
 
 ## demo4
 ![demo4](./images/demo4.png)
-
-## demo5
-![demo5](./images/demo5.png)
 
 ## earth
 ![earth](./images/earth.png)

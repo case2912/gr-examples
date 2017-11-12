@@ -13,11 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   stats.showPanel(0);
   document.body.appendChild(stats.domElement);
   gr.registerComponent("FPSManager", {
-    $update: function() {
+    attributes: {},
+    $render: function () {
       stats.update();
     }
   });
   gr(() => {
-    gr("#main")("scene").first().addComponent("FPSManager");
+    gr("#main")("renderer").first().addComponent("FPSManager");
   });
 });

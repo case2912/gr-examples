@@ -1,4 +1,4 @@
-<goml fpsRestriction="10">
+<goml>
   <import-material typeName="shader" src="index.sort"/>
   <renderer>
     <render-quad material="new(shader)"/>

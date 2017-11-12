@@ -4,8 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="../../page.css">
+  <!-- FPS Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+  <script src="../../config.js"></script>
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="https://unpkg.com/grimoirejs-preset-basic@1.11.0/register/grimoire-preset-basic.js"></script>
   <script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
   <script type="text/javascript">
     gr.lib.fundamental.Geometry.GeometryFactory.addType("axis", {}, gl => {
@@ -33,7 +38,7 @@
     // to use HMD mode:
     // controllerOptions.optimizeHMD = true;
 
-    Leap.loop(controllerOptions, function(frame) {
+    Leap.loop(controllerOptions, function (frame) {
       if (paused) {
         return; // Skip this update
       }
@@ -146,7 +151,7 @@
             pointableString += "Width: " + pointable.width.toFixed(1) + " mm<br />";
             pointableString += "Direction: " + vectorToString(pointable.direction, 2) + "<br />";
             pointableString += "Extended?: " + pointable.extended + "<br />";
-            pointable.bones.forEach(function(bone) {
+            pointable.bones.forEach(function (bone) {
               pointableString += "<b>" + boneTypeMap[bone.type] + " bone </b><br />";
               pointableString += "Center: " + vectorToString(bone.center()) + "<br />";
               const s = "#" + boneTypeMap[bone.type] + fingerTypeMap[pointable.type]

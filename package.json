@@ -13,7 +13,8 @@
     "preupdate": "node pagelist.js",
     "update": "node nightwatch.js",
     "postupdate": "sh convert.sh",
-    "start": "hs"
+    "start": "hs",
+    "rm-image": "rm ./images/*.png"
   },
   "repository": {
     "type": "git",

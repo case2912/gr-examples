@@ -1,6 +1,10 @@
 <goml width="fit" height="fit">
     <scene>
-        <camera />
+        <camera >
+        <camera.components>
+        <MouseCameraControl/>
+        </camera.components>
+        </camera>
         <mesh id="earth" scale="4" geometry="sphere" texture="./earthmap.jpeg"/>
     </scene>
 </goml>
