@@ -54,17 +54,18 @@
 
   function wave() {
     const t = String(new Date().getTime()).substr(10) - 0
+    const p = new Array(positions.length);
     for (var j = 0; j < n; j++) {
       for (var i = 0; i < n; i++) {
-        positions[3 * (i + n * j) + 0] = i - n / 2
-        positions[3 * (i + n * j) + 1] = j - n / 2
-        positions[3 * (i + n * j) + 2] = 10 * Math.ceil(i / 10 + Math.PI * t / 1000) * Math.sin(j / 10 + Math.PI * t / 1000)
+        p[3 * (i + n * j) + 0] = i - n / 2
+        p[3 * (i + n * j) + 1] = j - n / 2
+        p[3 * (i + n * j) + 2] = 10 * Math.ceil(i / 10 + Math.PI * t / 1000) * Math.sin(j / 10 + Math.PI * t / 1000)
         colors[3 * (i + n * j) + 0] = Math.abs(Math.sin(i / 10 + Math.PI * t / 1000) * Math.cos(j / 10 + Math.PI * t / 1000))
         colors[3 * (i + n * j) + 1] = Math.abs(Math.cos(i / 10 + Math.PI * t / 1000) * Math.sin(j / 10 + Math.PI * t / 1000))
         colors[3 * (i + n * j) + 2] = 1
       }
     }
-    pBuffer.update(new Float32Array(positions))
+    pBuffer.update(p)
     cBuffer.update(new Float32Array(colors))
     requestAnimationFrame(wave)
   }

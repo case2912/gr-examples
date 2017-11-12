@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%;height:100%">
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="./clmtrackr.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body style="width:100%;height:100%;background-color:black;">
+  <script id="main" type="text/goml">
+    <goml>
+      <import-material typeName="display" src="display.sort" />
+      <geometry type="frame" name="frame" />
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl/>
+          </camera.components>
+        </camera>
+        <mesh color="black" scale="10" position="0,0,2"></mesh>
+        <mesh material="new(display)" geometry="frame" targetBuffer="face_display" scale="3">
+          <mesh.components>
+            <WebCamera></WebCamera>
+          </mesh.components>
+        </mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

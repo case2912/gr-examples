@@ -1,0 +1,41 @@
+@Pass{
+  @BlendFunc(ONE,ONE)
+  FS_PREC(mediump,float)
+  varying float time;
+  varying vec2 vTexCoord;
+  #ifdef VS
+    @POSITION_BASE
+    attribute vec3 base;
+    attribute vec3 position;
+    attribute vec2 texcoord;
+    uniform mat4 _matPVM;
+    uniform mat4 _matIM;
+    uniform mat4 _matM;
+    uniform float _time;
+    mat4 rotate(vec3 axis, float angle) {
+      axis = normalize(axis);
+      float s = sin(angle);
+      float c = cos(angle);
+      float oc = 1.0 - c;
+
+      return mat4(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s, 0.0,
+        oc * axis.x * axis.y + axis.z * s, oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s, 0.0,
+        oc * axis.z * axis.x - axis.y * s, oc * axis.y * axis.z + axis.x * s, oc * axis.z * axis.z + c, 0.0,
+        0.0, 0.0, 0.0, 1.0);
+    }
+    void main(){
+      time=_time;
+        gl_PointSize = 10.;
+        gl_Position = _matPVM*_matIM* rotate(vec3(0,1,0),_time/3000.)*_matM * vec4(base, 1) + _matPVM * vec4(position, 1);
+        vTexCoord = texcoord;
+    }
+  #endif
+  #ifdef FS
+    @{type:"color", default:"white"}
+    uniform vec4 color;
+    uniform sampler2D texture;
+    void main(){
+        gl_FragColor = vec4(1.,0.8+0.2*sin(time/1000.),0.8+0.2*cos(time/1000.),1.) * texture2D(texture,vTexCoord);
+    }
+  #endif
+}

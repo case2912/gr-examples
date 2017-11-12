@@ -1,0 +1,24 @@
+@Pass{
+  @BlendFuncSeparate(SRC_ALPHA, ONE_MINUS_SRC_ALPHA, ONE, ONE)
+  FS_PREC(mediump,float)
+  #ifdef VS
+    attribute vec3 position;
+    uniform mat4 _matPVM;
+    void main(){
+      gl_PointSize = 20.;
+      gl_Position = _matPVM * vec4(position, 1);
+    }
+  #endif
+  #ifdef FS
+    @{type:"color", default:"blue"}
+    uniform vec4 color;
+    uniform float _time;
+    void main(){
+      if(length(gl_PointCoord - vec2(.5)) <= 0.25){
+        gl_FragColor = vec4(color.rgb, 0.5 + 0.2 * sin(_time/100.));
+      }else{
+        discard;
+      }
+    }
+  #endif
+}

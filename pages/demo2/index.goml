@@ -1,0 +1,22 @@
+<goml>
+  <import-material typeName="line" src="line.sort" />
+  <import-material typeName="point" src="point.sort" />
+  <geometry type="frame" name="frame" />
+  <scene>
+    <camera>
+      <camera.components>
+        <MouseCameraControl/>
+      </camera.components>
+    </camera>
+    <mesh scale="8,6,5" geometry="frame" material="new(line)" targetBuffer="line">
+      <mesh.components>
+        <WebCamera target="source"></WebCamera>
+      </mesh.components>
+    </mesh>
+    <mesh scale="8,6,5" geometry="frame" material="new(point)">
+      <mesh.components>
+        <WebCamera target="source"></WebCamera>
+      </mesh.components>
+    </mesh>
+  </scene>
+</goml>

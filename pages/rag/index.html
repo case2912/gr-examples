@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="https://unpkg.com/grimoirejs-forward-shading/register/grimoire-forward-shading.js"></script>
+  <script src="./index.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <script id="main" type="text/goml">
+    <goml>
+      <geometry type="points" name="points" />
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl/>
+          </camera.components>
+        </camera>
+        <light intensity="3"></light>
+        <mesh geometry="points" texture="texcoord.png"></mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

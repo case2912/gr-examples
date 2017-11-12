@@ -1,0 +1,29 @@
+@Pass{
+  @BlendFunc(SRC_ALPHA, ONE_MINUS_SRC_ALPHA)
+  FS_PREC(mediump,float)
+  varying vec2 vTexCoord;
+  #ifdef VS
+    attribute vec2 texcoord;
+    attribute vec3 position;
+    @POSITION_BASE
+    attribute vec3 pBase;
+    uniform mat4 _matPVM;
+    uniform float _time;
+    uniform sampler2D source;
+
+    void main(){
+      vTexCoord = vec2((1. - texcoord.x)*0.9 + 0.05,(1. - texcoord.y)*0.9+0.05);
+      vec4 tex = texture2D(source, vTexCoord);
+      gl_Position = _matPVM * vec4(pBase.xy + position.xy,(1. -length(tex.xyz)),1);
+    }
+  #endif
+  #ifdef FS
+    @{default:"white",type:"color"}
+    uniform vec4 color;
+    uniform sampler2D source;
+    void main(){
+      vec4 tex = color * texture2D(source, vTexCoord);
+        gl_FragColor = tex;
+    }
+  #endif
+}

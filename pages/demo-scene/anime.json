@@ -1,0 +1,13 @@
+{
+  "color": [{
+    "query": "@",
+    "component": "MaterialContainer",
+    "attribute": "color",
+    "timeline": [0, 3000,5000],
+    "values": [
+      "orange",
+      "blue",
+      "orange"
+    ]
+  }]
+}

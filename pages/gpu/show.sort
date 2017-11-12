@@ -1,0 +1,26 @@
+@Pass{
+  @BlendFunc(ONE,ONE)
+  FS_PREC(mediump,float)
+  varying vec3 col;
+  #ifdef VS
+    @INDEX
+    attribute float index;
+    uniform sampler2D texture;
+    uniform vec2 _viewportSize;
+    uniform mat4 _matPVM;
+    void main(){
+      vec2 p = vec2(mod(index, _viewportSize.x) / _viewportSize.x,ceil(index / _viewportSize.x) / _viewportSize.y);
+      vec4 t = texture2D(texture, p);
+      gl_Position  = _matPVM * vec4(t.xyz, 1.0);
+      gl_PointSize = 1.;
+      col =t.xyz;
+  }
+  #endif
+  #ifdef FS
+    @{type:"color", default:"blue"}
+    uniform vec4 color;
+    void main(){
+        gl_FragColor = vec4(col.xy,1.,col.z);
+    }
+  #endif
+}

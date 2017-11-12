@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="indexGeometry.js"></script>
+  <style type="text/css">
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script id="main" type="text/goml">
+    <goml>
+      <import-material typeName="point" src="point.sort"></import-material>
+      <geometry type="index" name="index" number="23"></geometry>
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh geometry="index" material="new(point)"></mesh>
+        <mesh geometry="index" material="new(point)" indexGroup="lines"></mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

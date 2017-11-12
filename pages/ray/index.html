@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    const Quaternion = gr.lib.math.Quaternion;
+    gr.registerComponent("Billboard", {
+      attributes: {
+        target: {
+          converter: "String",
+          default: "texture"
+        }
+      },
+      $update: function() {
+        const camera = this.node.parent.getChildrenByNodeName("camera")[0];
+        this.node.setAttribute("rotation", camera.getComponent("Transform").rotation);
+        const r = camera.getComponent("Transform").rotation;
+        // this.node.setAttribute("lightDir",Quaternion.multiply(Quaternion.euler).eularAngles);
+      }
+    });
+  </script>
+  <script type="text/goml">
+    <goml>
+      <import-material typeName="mat" src="test.sort"></import-material>
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl/>
+          </camera.components>
+        </camera>
+        <mesh material="new(mat)">
+          <mesh.components>
+            <Billboard></Billboard>
+          </mesh.components>
+        </mesh>
+        <mesh rotation="-90,0,0" color="orange"></mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

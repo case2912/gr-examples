@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%;height:100%">
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body style="width:100%;height:100%;background-color:black;">
+  <script id="main" type="text/goml">
+    <goml>
+      <import-material typeName="point" src="point.sort" />
+      <geometry type="frame" name="frame" />
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl/>
+          </camera.components>
+        </camera>
+        <mesh scale="8,6,1" geometry="frame" material="new(point)">
+          <mesh.components>
+            <WebCamera target="source"></WebCamera>
+          </mesh.components>
+        </mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+@Pass{
+  @BlendFunc(SRC_ALPHA, ONE_MINUS_SRC_ALPHA)
+  FS_PREC(mediump,float)
+  varying vec2 uv;
+  #ifdef VS
+    attribute vec3 position;
+    @POSITION_BASE
+    attribute vec3 posBase;
+    @RANDOM_SEED
+    attribute float seed;
+    uniform float _time;
+    uniform mat4 _matPVM;
+    void main(){
+      uv = vec2(position.xy);
+      gl_Position = _matPVM * vec4(vec3(position.x + sin(_time / 1000.),position.y + cos(_time / 1000.),position.z + sin(_time / 1000.)) * seed * (.5 + .5 * sin(seed* _time/1000.)) + posBase ,1);
+    }
+  #endif
+
+  #ifdef FS
+  @{default:"red",type:"color"}
+  uniform vec4 color;
+    void main(){
+          if(length(uv) > 1. ||length(uv) < .8 ){
+            discard;
+          }else{
+            gl_FragColor = vec4(color.rgb,.8);
+          }
+    }
+  #endif
+}

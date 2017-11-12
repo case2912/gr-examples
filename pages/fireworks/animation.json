@@ -1,0 +1,27 @@
+{
+  "move": [{
+    "query": "@",
+    "component": "Transform",
+    "attribute": "position",
+    "timeline": [0, 2000, 5000],
+    "defaultEffect": "LINEAR",
+    "values": [
+      [0, -40, 0],
+      [0, 10, 0],
+      [0, -40, 0]
+    ]
+  }],
+  "rotate": [{
+    "query": "@",
+    "component": "Transform",
+    "attribute": "scale",
+    "timeline": [0, 2000, 2100, 5000],
+    "defaultEffect": "LINEAR",
+    "values": [
+      [1, 1, 1],
+      [1, 1, 1],
+      [120, 120, 120],
+      [200, 200, 200]
+    ]
+  }]
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%;height:100%">
+
+<head>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body style="width:100%;height:100%;background-color:black;">
+  <script type="text/goml">
+    <goml>
+      <import-material typeName="mat" src="./index.sort"></import-material>
+      <geometry type="particle" name="particle"></geometry>
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh geometry="particle" scale="8,6,3" material="new(mat)">
+          <mesh.components>
+            <WebCamera target="source"></WebCamera>
+          </mesh.components>
+        </mesh>
+        <mesh geometry="particle" scale="8,6,3" material="new(mat)" targetBuffer="wireframe" color="black">
+          <mesh.components>
+            <WebCamera target="source"></WebCamera>
+          </mesh.components>
+        </mesh>
+        <mesh color="orange" scale="1000"></mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

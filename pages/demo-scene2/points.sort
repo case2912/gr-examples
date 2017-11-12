@@ -1,0 +1,37 @@
+@Pass{
+  @BlendFunc(SRC_ALPHA,ONE_MINUS_SRC_ALPHA)
+  FS_PREC(mediump,float)
+  varying vec2 vTexcoord;
+  varying float vTime;
+  varying vec3 Pos;
+  #ifdef VS
+    attribute float index;
+    uniform mat4 _matPVM;
+    uniform float _time;
+    float rand(vec2 co){
+      return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+    }
+    void main(){
+        vTime = _time;
+        vTexcoord = vec2(mod(index,256.)/(256. - 1.),1.-floor(index/256.)/(512. -1.));
+        gl_PointSize = 8.;
+        float r = .5 +.5 *sin(_time/3000.*3.14);
+        vec3 pos = vec3(mod(index,256.)/(256. - 1.),floor(index/512.)/(512. -1.),rand(vTexcoord+.2)*.1 -.05) -vec3(.5,.25,0);
+        vec3 pospos = pos*r +(1. - r)*(vec3(rand(vTexcoord),rand(vTexcoord+.1),rand(vTexcoord+.2)) - .5)*.5;
+        Pos = pospos;
+        gl_Position = _matPVM * vec4(pospos, 1);
+    }
+  #endif
+  #ifdef FS
+    @{type:"color", default:"white"}
+    uniform vec4 color;
+    uniform sampler2D texture;
+    uniform sampler2D texture2;
+    void main(){
+        float r = .5 + .5 * cos(vTime/3000.*1.57);
+        vec4 tex1 = texture2D(texture,vTexcoord);
+        vec4 tex2 = texture2D(texture2,vTexcoord);
+        gl_FragColor =vec4(1. -abs(Pos)-.4,(r* tex1 + (1.-r)*tex2).w*step(length(gl_PointCoord-.5),.5));
+    }
+  #endif
+}

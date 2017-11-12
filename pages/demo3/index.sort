@@ -1,0 +1,29 @@
+@Pass{
+  @BlendFunc(ONE,ONE)
+  FS_PREC(mediump,float)
+  varying vec2 vTexCoord;
+  #ifdef VS
+    attribute vec2 texcoord;
+    attribute vec3 position;
+    uniform sampler2D source;
+    uniform mat4 _matPVM;
+    uniform float _time;
+    void main(){
+      vTexCoord = vec2(1. - texcoord.x,1. - texcoord.y);
+      gl_PointSize = 10. * (1. +0.5*sin(vTexCoord.y * 1.57));
+      gl_Position = _matPVM * vec4(position.xy,1. - length(texture2D(source, vTexCoord).xyz),1);
+    }
+  #endif
+  #ifdef FS
+    @{type:"color", default:"white"}
+    uniform vec4 color;
+    uniform sampler2D source;
+    void main(){
+      if(length(gl_PointCoord -0.5) > 0.5){
+        discard;
+      }else{
+        gl_FragColor = vec4(0.3,0.5,1. - vTexCoord.y,1.) * texture2D(source, vTexCoord);
+      }
+    }
+  #endif
+}

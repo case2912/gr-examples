@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="https://js.leapmotion.com/leap-0.6.4.js"></script>
+  <script type="text/javascript">
+    gr.lib.fundamental.Geometry.GeometryFactory.addType("axis", {}, gl => {
+      const geometry = new gr.lib.fundamental.Geometry.Geometry(gl)
+      geometry.addAttributes([0, 0, 0, 0, 1, 0], {
+        POSITION: {
+          size: 3
+        }
+      })
+      geometry.addIndex("default", [0, 1], WebGLRenderingContext.LINES)
+      return geometry
+    })
+  </script>
+  <script>
+    // Store frame for motion functions
+    var previousFrame = null;
+    var paused = false;
+    var pauseOnGesture = false;
+
+    // Setup Leap loop with frame callback function
+    var controllerOptions = {
+      enableGestures: true
+    };
+
+    // to use HMD mode:
+    // controllerOptions.optimizeHMD = true;
+
+    Leap.loop(controllerOptions, function(frame) {
+      if (paused) {
+        return; // Skip this update
+      }
+
+
+      // Display Frame object data
+      var frameOutput = document.getElementById("frameData");
+
+      var frameString = "Frame ID: " + frame.id + "<br />" +
+        "Timestamp: " + frame.timestamp + " &micro;s<br />" +
+        "Hands: " + frame.hands.length + "<br />" +
+        "Fingers: " + frame.fingers.length + "<br />" +
+        "Tools: " + frame.tools.length + "<br />" +
+        "Gestures: " + frame.gestures.length + "<br />";
+
+      // Frame motion factors
+      if (previousFrame && previousFrame.valid) {
+        var translation = frame.translation(previousFrame);
+        frameString += "Translation: " + vectorToString(translation) + " mm <br />";
+        var rotationAxis = frame.rotationAxis(previousFrame);
+        var rotationAngle = frame.rotationAngle(previousFrame);
+        frameString += "Rotation axis: " + vectorToString(rotationAxis, 2) + "<br />";
+        frameString += "Rotation angle: " + rotationAngle.toFixed(2) + " radians<br />";
+
+        var scaleFactor = frame.scaleFactor(previousFrame);
+        frameString += "Scale factor: " + scaleFactor.toFixed(2) + "<br />";
+      }
+      frameOutput.innerHTML = "<div style='width:300px; float:left; padding:5px'>" + frameString + "</div>";
+
+      // Display Hand object data
+      var handOutput = document.getElementById("handData");
+      var handString = "";
+      if (frame.hands.length > 0) {
+        for (var i = 0; i < frame.hands.length; i++) {
+          var hand = frame.hands[i];
+
+          handString += "<div style='width:300px; float:left; padding:5px'>";
+          handString += "Hand ID: " + hand.id + "<br />";
+          handString += "Type: " + hand.type + " hand" + "<br />";
+          handString += "Direction: " + vectorToString(hand.direction, 2) + "<br />";
+          handString += "Palm position: " + vectorToString(hand.palmPosition) + " mm<br />";
+          gr("#main")("#palm").setAttribute("position", hand.palmPosition.map(v => v / 100));
+          handString += "Grab strength: " + hand.grabStrength + "<br />";
+          gr("#main")(".hand").setAttribute("color", [hand.grabStrength, hand.grabStrength, hand.grabStrength, 1]);
+          handString += "Pinch strength: " + hand.pinchStrength + "<br />";
+          handString += "Confidence: " + hand.confidence + "<br />";
+          handString += "Arm direction: " + vectorToString(hand.arm.direction()) + "<br />";
+          handString += "Arm center: " + vectorToString(hand.arm.center()) + "<br />";
+          gr("#main")("#arm").setAttribute("position", hand.arm.center().map(v => v / 100));
+          handString += "Arm up vector: " + vectorToString(hand.arm.basis[1]) + "<br />";
+
+          // Hand motion factors
+          if (previousFrame && previousFrame.valid) {
+            var translation = hand.translation(previousFrame);
+            handString += "Translation: " + vectorToString(translation) + " mm<br />";
+
+            var rotationAxis = hand.rotationAxis(previousFrame, 2);
+            var rotationAngle = hand.rotationAngle(previousFrame);
+            handString += "Rotation axis: " + vectorToString(rotationAxis) + "<br />";
+            handString += "Rotation angle: " + rotationAngle.toFixed(2) + " radians<br />";
+
+            var scaleFactor = hand.scaleFactor(previousFrame);
+            handString += "Scale factor: " + scaleFactor.toFixed(2) + "<br />";
+          }
+
+          // IDs of pointables associated with this hand
+          if (hand.pointables.length > 0) {
+            var fingerIds = [];
+            for (var j = 0; j < hand.pointables.length; j++) {
+              var pointable = hand.pointables[j];
+              fingerIds.push(pointable.id);
+            }
+            if (fingerIds.length > 0) {
+              handString += "Fingers IDs: " + fingerIds.join(", ") + "<br />";
+            }
+          }
+
+          handString += "</div>";
+        }
+      } else {
+        handString += "No hands";
+      }
+      handOutput.innerHTML = handString;
+
+      // Display Pointable (finger and tool) object data
+      var pointableOutput = document.getElementById("pointableData");
+      var pointableString = "";
+      if (frame.pointables.length > 0) {
+        var fingerTypeMap = ["Thumb", "IndexFinger", "MiddleFinger", "RingFinger", "PinkyFinger"];
+        var boneTypeMap = ["Metacarpal", "ProximalPhalanx", "IntermediatePhalanx", "DistalPhalanx"];
+        for (var i = 0; i < frame.pointables.length; i++) {
+          var pointable = frame.pointables[i];
+
+          pointableString += "<div style='width:250px; float:left; padding:5px'>";
+
+          if (pointable.tool) {
+            pointableString += "Pointable ID: " + pointable.id + "<br />";
+            pointableString += "Classified as a tool <br />";
+            pointableString += "Length: " + pointable.length.toFixed(1) + " mm<br />";
+            pointableString += "Width: " + pointable.width.toFixed(1) + " mm<br />";
+            pointableString += "Direction: " + vectorToString(pointable.direction, 2) + "<br />";
+            pointableString += "Tip position: " + vectorToString(pointable.tipPosition) + " mm<br />"
+            pointableString += "</div>";
+          } else {
+            pointableString += "Pointable ID: " + pointable.id + "<br />";
+            pointableString += "Type: " + fingerTypeMap[pointable.type] + "<br />";
+            pointableString += "Belongs to hand with ID: " + pointable.handId + "<br />";
+            pointableString += "Classified as a finger<br />";
+            pointableString += "Length: " + pointable.length.toFixed(1) + " mm<br />";
+            pointableString += "Width: " + pointable.width.toFixed(1) + " mm<br />";
+            pointableString += "Direction: " + vectorToString(pointable.direction, 2) + "<br />";
+            pointableString += "Extended?: " + pointable.extended + "<br />";
+            pointable.bones.forEach(function(bone) {
+              pointableString += "<b>" + boneTypeMap[bone.type] + " bone </b><br />";
+              pointableString += "Center: " + vectorToString(bone.center()) + "<br />";
+              const s = "#" + boneTypeMap[bone.type] + fingerTypeMap[pointable.type]
+              gr("#main")(s).setAttribute("position", bone.center().map(v => v / 100));
+              pointableString += "Direction: " + vectorToString(bone.direction()) + "<br />";
+              pointableString += "Up vector: " + vectorToString(bone.basis[1]) + "<br />";
+            });
+            pointableString += "Tip position: " + vectorToString(pointable.tipPosition) + " mm<br />";
+            pointableString += "</div>";
+          }
+        }
+      } else {
+        pointableString += "<div>No pointables</div>";
+      }
+      pointableOutput.innerHTML = pointableString;
+
+      // Display Gesture object data
+      var gestureOutput = document.getElementById("gestureData");
+      var gestureString = "";
+      if (frame.gestures.length > 0) {
+        if (pauseOnGesture) {
+          togglePause();
+        }
+        for (var i = 0; i < frame.gestures.length; i++) {
+          var gesture = frame.gestures[i];
+          gestureString += "Gesture ID: " + gesture.id + ", " +
+            "type: " + gesture.type + ", " +
+            "state: " + gesture.state + ", " +
+            "hand IDs: " + gesture.handIds.join(", ") + ", " +
+            "pointable IDs: " + gesture.pointableIds.join(", ") + ", " +
+            "duration: " + gesture.duration + " &micro;s, ";
+
+          switch (gesture.type) {
+            case "circle":
+              gestureString += "center: " + vectorToString(gesture.center) + " mm, " +
+                "normal: " + vectorToString(gesture.normal, 2) + ", " +
+                "radius: " + gesture.radius.toFixed(1) + " mm, " +
+                "progress: " + gesture.progress.toFixed(2) + " rotations";
+              break;
+            case "swipe":
+              gestureString += "start position: " + vectorToString(gesture.startPosition) + " mm, " +
+                "current position: " + vectorToString(gesture.position) + " mm, " +
+                "direction: " + vectorToString(gesture.direction, 1) + ", " +
+                "speed: " + gesture.speed.toFixed(1) + " mm/s";
+              break;
+            case "screenTap":
+            case "keyTap":
+              gestureString += "position: " + vectorToString(gesture.position) + " mm";
+              break;
+            default:
+              gestureString += "unkown gesture type";
+          }
+          gestureString += "<br />";
+        }
+      } else {
+        gestureString += "No gestures";
+      }
+      gestureOutput.innerHTML = gestureString;
+
+      // Store frame for motion functions
+      previousFrame = frame;
+    })
+
+    function vectorToString(vector, digits) {
+      if (typeof digits === "undefined") {
+        digits = 1;
+      }
+      return "(" + vector[0].toFixed(digits) + ", " +
+        vector[1].toFixed(digits) + ", " +
+        vector[2].toFixed(digits) + ")";
+    }
+
+    function togglePause() {
+      paused = !paused;
+
+      if (paused) {
+        document.getElementById("pause").innerText = "Resume";
+      } else {
+        document.getElementById("pause").innerText = "Pause";
+      }
+    }
+
+    function pauseForGestures() {
+      if (document.getElementById("pauseOnGesture").checked) {
+        pauseOnGesture = true;
+      } else {
+        pauseOnGesture = false;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <script id="main" type="text/goml">
+    <goml width="800" height="600" bgColor="gray">
+      <geometry type="axis" name="axis"></geometry>
+      <scene>
+        <camera position="0,3,10">
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh color="red" geometry="axis" scale="3" rotation="z(-90)"></mesh>
+        <mesh color="green" geometry="axis" scale="3"></mesh>
+        <mesh color="blue" geometry="axis" scale="3" rotation="x(90)"></mesh>
+        <mesh id="center" color="white" geometry="sphere" scale="0.01" position="0,0,0"></mesh>
+        <mesh class="hand" id="palm" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="arm" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="MetacarpalThumb" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="ProximalPhalanxThumb" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="IntermediatePhalanxThumb" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="DistalPhalanxThumb" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="MetacarpalIndexFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="ProximalPhalanxIndexFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="IntermediatePhalanxIndexFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="DistalPhalanxIndexFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="MetacarpalMiddleFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="ProximalPhalanxMiddleFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="IntermediatePhalanxMiddleFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="DistalPhalanxMiddleFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="MetacarpalRingFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="ProximalPhalanxRingFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="IntermediatePhalanxRingFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="DistalPhalanxRingFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="MetacarpalPinkyFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="ProximalPhalanxPinkyFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="IntermediatePhalanxPinkyFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+        <mesh class="hand" id="DistalPhalanxPinkyFinger" color="black" geometry="sphere" scale="0.04"></mesh>
+      </scene>
+    </goml>
+  </script>
+  <h1>Leap Motion JavaScript Sample</h1>
+  <div id="main">
+    <button id="pause" onclick="togglePause()">Pause</button>
+    <input type="checkbox" id="pauseOnGesture" onclick="pauseForGestures()">Pause on gesture</input>
+    <h3>Frame data:</h3>
+    <div id="frameData"></div>
+    <div style="clear:both;"></div>
+    <h3>Hand data:</h3>
+    <div id="handData"></div>
+    <div style="clear:both;"></div>
+    <h3>Finger and tool data:</h3>
+    <div id="pointableData"></div>
+    <div style="clear:both;"></div>
+    <h3>Gesture data:</h3>
+    <div id="gestureData"></div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="preset-basic.js"></script>
+  <script src="animation.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body>
+  <script id="main" type="text/goml">
+    <goml bgColor="black">
+      <import-animation src="./animation.json" typeName="anim"></import-animation>
+      <import-material typeName="mat" src="index.sort"></import-material>
+      <geometry type="points" name="points"></geometry>
+      <scene>
+        <camera far="1000" position="0,0,-100">
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        <object position="0,0,0" scale="0.5">
+        <mesh color="orange" geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        </object>
+        <object position="10,-2,0" scale="0.7">
+        <mesh color="red" geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        </object>
+        <object position="-30,-5,0" scale="0.7">
+        <mesh color="yellow" geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        </object>
+        <object position="-50,-10,0" scale="1.2">
+        <mesh color="white" geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        </object>
+        <object position="50,-10,0" scale="1.2">
+        <mesh color="green" geometry="points" material="new(mat)" position="0,-40,0">
+          <mesh.components>
+            <Animation animation="anim" clips="move rotate"></Animation>
+          </mesh.components>
+        </mesh>
+        </object>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

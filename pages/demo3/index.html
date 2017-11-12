@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" style="width:100%;height:100%">
+
+<head>
+  <script src="./liquidfun.js"></script>
+  <script src="https://unpkg.com/grimoirejs-preset-basic/register/grimoire-preset-basic.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body style="width:100%;height:100%;background-color:black;">
+  <script type="text/goml">
+    <goml>
+      <import-material typeName="mat" src="./index.sort"></import-material>
+      <geometry type="particle" name="particle"></geometry>
+      <geometry type="frame" name="frame"></geometry>
+      <scene>
+        <camera>
+          <camera.components>
+            <MouseCameraControl></MouseCameraControl>
+          </camera.components>
+        </camera>
+        <mesh geometry="particle" material="new(mat)">
+          <mesh.components>
+            <WebCamera target="source"></WebCamera>
+          </mesh.components>
+        </mesh>
+        <mesh geometry="particle" material="new(mat)" position="0,0,0.1">
+          <mesh.components>
+            <WebCamera target="source"></WebCamera>
+          </mesh.components>
+        </mesh>
+      </scene>
+    </goml>
+  </script>
+</body>
+
+</html>

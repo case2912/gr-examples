@@ -1,0 +1,25 @@
+@Pass{
+  @BlendFunc(ONE,ONE)
+  FS_PREC(mediump,float)
+  varying vec2 vTexcoord;
+  #ifdef VS
+    uniform mat4 _matPVM;
+    attribute vec2 texcoord;
+    attribute vec3 position;
+    void main(){
+        vTexcoord = texcoord;
+        gl_Position = _matPVM * vec4(position, 1);
+    }
+  #endif
+  #ifdef FS
+    uniform sampler2D texture;
+    uniform vec2 _viewportSize;
+    void main(){
+        if(length(texture2D(texture,vTexcoord)) == 0.){
+          gl_FragColor = step(_viewportSize.x * vTexcoord.x,500.)* vec4(0,0,0,1.);
+        }else{
+          gl_FragColor = texture2D(texture,vTexcoord);
+        }
+    }
+  #endif
+}
