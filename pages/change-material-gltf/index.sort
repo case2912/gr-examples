@@ -1,0 +1,30 @@
+@Pass{
+@DynamicState(dynamic-cull)
+#extension GL_OES_standard_derivatives : enable
+@BlendFunc(SRC_ALPHA,ONE_MINUS_SRC_ALPHA)
+FS_PREC(highp,float)
+
+@import "gltf-varying-vertex"
+
+#ifdef FS
+@{type:"color",default:"red"}
+uniform vec3 shimaColor;
+
+@{default:0}
+uniform float shimaWidth;
+
+@{default:0}
+uniform float rotate;
+
+@TIME
+uniform float time;
+
+#define PRE_SHADING_SURFACE_FUNCTION preShadingSurfaceFunction
+vec4 preShadingSurfaceFunction(vec4 base,vec3 normal,vec3 position){
+
+    mat2 rot = mat2(cos(rotate * PI+ time/2000.),sin(rotate * PI+ time/2000.),-sin(rotate *PI+ time/2000.),cos(rotate* PI+ time/2000.));
+    return vec4(mix(base.rgb,shimaColor.rgb,step(.9 - shimaWidth*2.,sin((rot * vUV).y *100.))),base.a);
+}
+#endif
+@import "gltf-fragment"
+}

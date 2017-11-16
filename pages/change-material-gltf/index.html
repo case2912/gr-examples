@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/grimoirejs@0.20.2/register/grimoire.js"></script>
+    <script src="https://unpkg.com/grimoirejs-math@1.15.1/register/grimoire-math.js"></script>
+    <script src="https://unpkg.com/grimoirejs-fundamental@0.30.5/register/grimoire-fundamental.js"></script>
+
+    <script src="https://unpkg.com/grimoirejs-animation@1.3.5/register/grimoire-animation.js"></script>
+    <script src="https://unpkg.com/grimoirejs-forward-shading@1.10.1/register/grimoire-forward-shading.js"></script>
+    <script src="https://unpkg.com/grimoirejs-gltf@2.3.9/register/grimoire-gltf.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/goml" id="main">
+        <goml>
+            <import-material typeName="mat" src="index.sort" />
+            <scene>
+                <camera>
+                </camera>
+                <object position="2,-12,0" scale="8">
+                    <model src="./person.gltf" />
+                </object>
+                <light type="directional" rotation="-30d,30,0d" color="white" intensity="5.0" />
+            </scene>
+        </goml>
+    </script>
+    <script>
+        gr(() => {
+            setTimeout(function () {
+                gr("#main")("model").get(0).children[0].setAttribute("material", "new(mat)");
+            }, 1000)
+            let phi = 0
+            const rotate = () => {
+                gr("#main")("model").setAttribute("rotation", 0 + ',' + phi + ',' + 0);
+                phi += 0.5;
+                requestAnimationFrame(rotate);
+            }
+            rotate()
+        })
+    </script>
+</body>
+
+</html>

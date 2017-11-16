@@ -1,0 +1,179 @@
+{
+    "accessors" : [
+        {
+            "bufferView" : 0, 
+            "componentType" : 5123, 
+            "count" : 49632, 
+            "max" : [
+                9111
+            ], 
+            "min" : [
+                0
+            ], 
+            "type" : "SCALAR"
+        }, 
+        {
+            "bufferView" : 1, 
+            "componentType" : 5126, 
+            "count" : 9112, 
+            "max" : [
+                47.7379264831543, 
+                16.972230911254883, 
+                0.3892329931259155
+            ], 
+            "min" : [
+                -47.7379264831543, 
+                -12.903053283691406, 
+                -182.23545837402344
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 2, 
+            "componentType" : 5126, 
+            "count" : 9112, 
+            "max" : [
+                0.999359130859375, 
+                0.999969482421875, 
+                0.99993896484375
+            ], 
+            "min" : [
+                -0.999359130859375, 
+                -0.999969482421875, 
+                -0.99981689453125
+            ], 
+            "type" : "VEC3"
+        }, 
+        {
+            "bufferView" : 3, 
+            "componentType" : 5126, 
+            "count" : 9112, 
+            "max" : [
+                1.0, 
+                0.9999939203262329, 
+                0.9816633462905884, 
+                1.0
+            ], 
+            "min" : [
+                -0.9999335408210754, 
+                -0.9999940395355225, 
+                -0.9816633462905884, 
+                1.0
+            ], 
+            "type" : "VEC4"
+        }, 
+        {
+            "bufferView" : 4, 
+            "componentType" : 5126, 
+            "count" : 9112, 
+            "max" : [
+                0.9889219999313354, 
+                0.9831240009516478
+            ], 
+            "min" : [
+                0.01107800006866455, 
+                0.01287698745727539
+            ], 
+            "type" : "VEC2"
+        }
+    ], 
+    "asset" : {
+        "generator" : "Khronos Blender glTF 2.0 exporter", 
+        "version" : "2.0"
+    }, 
+    "bufferViews" : [
+        {
+            "buffer" : 0, 
+            "byteLength" : 99264, 
+            "byteOffset" : 0, 
+            "target" : 34963
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 109344, 
+            "byteOffset" : 99264, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 109344, 
+            "byteOffset" : 208608, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 145792, 
+            "byteOffset" : 317952, 
+            "target" : 34962
+        }, 
+        {
+            "buffer" : 0, 
+            "byteLength" : 72896, 
+            "byteOffset" : 463744, 
+            "target" : 34962
+        }
+    ], 
+    "buffers" : [
+        {
+            "byteLength" : 536640, 
+            "uri" : "person.bin"
+        }
+    ], 
+    "materials" : [
+        {
+            "name" : "Default Material", 
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.6080000014305114, 
+                    0.4960000112056733, 
+                    0.41599999094009377, 
+                    1.0
+                ], 
+                "metallicFactor" : 0.0
+            }
+        }
+    ], 
+    "meshes" : [
+        {
+            "name" : "humanBody", 
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "NORMAL" : 2, 
+                        "POSITION" : 1, 
+                        "TANGENT" : 3, 
+                        "TEXCOORD_0" : 4
+                    }, 
+                    "indices" : 0, 
+                    "material" : 0
+                }
+            ]
+        }
+    ], 
+    "nodes" : [
+        {
+            "mesh" : 0, 
+            "name" : "humanBody", 
+            "rotation" : [
+                0.7071068286895752, 
+                0.0, 
+                -0.0, 
+                0.7071067094802856
+            ], 
+            "scale" : [
+                0.009999999776482582, 
+                0.009999999776482582, 
+                0.009999999776482582
+            ]
+        }
+    ], 
+    "scene" : 0, 
+    "scenes" : [
+        {
+            "name" : "Scene", 
+            "nodes" : [
+                0
+            ]
+        }
+    ]
+}
